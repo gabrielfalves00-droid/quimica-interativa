@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Concentração de Soluções</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+
+header{
+text-align:center;
+margin-bottom:20px;
+}
+
+h1{
+color:#1565c0;
+}
+
+.autor{
+color:#666;
+}
+
+.card{
+background:#eef5ff;
+padding:20px;
+border-radius:10px;
+}
+
+label{
+display:block;
+margin-top:12px;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:5px;
+box-sizing:border-box;
+}
+
+button{
+margin-top:20px;
+width:100%;
+padding:12px;
+border:none;
+background:#1565c0;
+color:white;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0d47a1;
+}
+
+#resultado{
+margin-top:20px;
+background:#f0f8ff;
+padding:15px;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<h1>Calculadora de Concentração de Soluções</h1>
+<p class="autor">Autor: Gabriel Ferreira</p>
+</header>
+
+<div class="card">
+
+<label>Massa do Soluto (g)</label>
+<input type="number" id="massa">
+
+<label>Volume da Solução (L)</label>
+<input type="number" id="volume" step="0.01">
+
+<label>Massa Molar do Soluto (g/mol)</label>
+<input type="number" id="mm">
+
+<button onclick="calcular()">Calcular</button>
+
+<div id="resultado"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function calcular(){
+
+let m = Number(document.getElementById("massa").value);
+let v = Number(document.getElementById("volume").value);
+let mm = Number(document.getElementById("mm").value);
+
+if(m<=0 || v<=0 || mm<=0){
+document.getElementById("resultado").innerHTML=
+"Preencha todos os valores corretamente.";
+return;
+}
+
+let comum = m/v;
+
+let titulo = (m/(v*1000))*100;
+
+let mols = m/mm;
+
+let molaridade = mols/v;
+
+document.getElementById("resultado").innerHTML =
+
+"<h2>Resultados</h2>" +
+
+"<b>Concentração Comum:</b> " +
+comum.toFixed(4) + " g/L<br><br>" +
+
+"<b>Título (% m/v):</b> " +
+titulo.toFixed(4) + "%<br><br>" +
+
+"<b>Quantidade de Matéria:</b> " +
+mols.toFixed(4) + " mol<br><br>" +
+
+"<b>Concentração Molar:</b> " +
+molaridade.toFixed(4) + " mol/L";
+
+}
+
+</script>
+
+</body>
+</html>
